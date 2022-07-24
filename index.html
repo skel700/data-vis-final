@@ -1,14 +1,26 @@
 <html>
   <script src='https://d3js.org/d3.v5.min.js'></script>
-  <script>d3.csv("/2020_CSN_Identity_Theft_Reports_by_Type.csv", function(data) {
-    let length = data.length
-    document.getElementById("test").innerHTML = length;
-  });
-  </script>
+  <style>
+	body {background: #D1E4B6;}
+	h1   {color: black;}
+	svg    {border-radius: 25px; background: #73AD21; padding: 20px;}
+	rect {fill: white; stroke: black; }
+  </style>
   <body>
-    <svg width=100 height=350>
-    </svg>
+    <h1> Test </h1>
+    <p id=test> Test 2</p>
+    <svg width=300 height=300></svg>
+    <script>
+	var data = [4,8,15,16,23,42];
+
+	xs = d3.scaleBand().domain([0,1,2,3,4,5]).range([0, 200])
+	ys = d3.scaleLinear().domain([0,42]).range([200, 0])
+
+
+	d3.select("svg").append("g").attr("transform", "translate(50,50)").selectAll("rect").data(data).enter().append("rect").attr('x', function(d,i) {return xs(i);}).attr('y', function(d,i) {return ys(d);}).attr('width' , 200/6).attr('height', function(d) {return 200-ys(d);})
+
+	d3.select("svg").append("g").attr("transform", "translate(50,50)").call(d3.axisLeft(ys));
+	d3.select("svg").append("g").attr("transform", "translate(50,250)").call(d3.axisBottom(xs));
+    </script>
   </body>
-  <h1> Test </h1>
-  <h2 id=test> test 2 </h2>
 </html>
