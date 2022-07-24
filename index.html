@@ -1,8 +1,8 @@
 <html>
   <script src='https://d3js.org/d3.v5.min.js'></script>
   <script>d3.csv("/2020_CSN_Identity_Theft_Reports_by_Type.csv", function(data) {
-    var length = data.length
-    document.write(length)
+    let length = data.length
+    document.getElementById("test").innerHTML = length;
   });
   </script>
   <body>
@@ -10,4 +10,5 @@
     </svg>
   </body>
   <h1> Test </h1>
+  <h2 id=test> test 2 </h2>
 </html>
