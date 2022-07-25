@@ -1,6 +1,6 @@
 <html>
   <script src='https://d3js.org/d3.v5.min.js'></script>
-  <script> d3.csv('/data-vis-final/2020_CSN_Identity_Theft_Reports_by_Type.csv');</script>
+ 
   <style>
 	body {background: #D1E4B6;}
 	h1   {color: black;}
@@ -11,7 +11,7 @@
     <svg width=300 height=300></svg>
     <script>
     async function init(){
-    	data = d3.csv("http://github.com/nytimes/covid-19-data/us-states.csv")
+    	data = d3.csv("/data-vis-final/2020_CSN_Identity_Theft_Reports_by_Type.csv")
 			.then(function(data) {
 
 	d3.select("svg").append("g").attr("test", "added")
