@@ -7,9 +7,7 @@
 	svg    {border-radius: 25px; background: #73AD21; padding: 20px;}
 	rect {fill: white; stroke: black; }
   </style>
-  <body onload = 'init()'>
-    <h1> Test </h1>
-    <p id=test> Test 2</p>
+  <body onload='init()'>
     <svg width=300 height=300></svg>
     <script>
     async function init(){
@@ -18,6 +16,7 @@
 
 	d3.select("svg").append("g").attr("test", "added")
 	});
+    }
     </script>
   </body>
 </html>
