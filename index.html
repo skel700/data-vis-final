@@ -9,6 +9,12 @@
   </style>
   <body onload='init()'>
     <svg width=300 height=300></svg>
+    <input type="submit" onClick="myFunction()"/>
+	  <script>
+		  function myFunction() {
+			  window.location.href="https://skel700.github.io/data-vis-final/page2
+		  }
+	  </script>
     <script>
 	    xs = d3.scaleBand().domain([2018,2019, 2020]).range([0, 200])
 	    ys = d3.scaleLinear().domain([0, 6000000]).range([200, 0])
