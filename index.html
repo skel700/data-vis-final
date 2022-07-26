@@ -13,7 +13,7 @@
 	    xs = d3.scaleBand().domain([2018,2019, 2020]).range([0, 200])
 	    ys = d3.scaleLinear().domain([0, 6000000]).range([200, 0])
     async function init(){
-    	data = d3.csv("/data-vis-final/2020_CSN_Detailed_Report_Categories_over_Three_Years.csv")
+    	data = d3.csv("/data-vis-final/last_three_years.csv")
 			.then(function(data) {
 
 		
