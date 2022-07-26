@@ -7,14 +7,17 @@
 	svg    {border-radius: 25px; background: #73AD21; padding: 20px;}
 	rect {fill: white; stroke: black; }
   </style>
-  <body onload='init()'>
-    <svg width=300 height=300></svg>
-    <input type="submit" onClick="myFunction()"/>
+  <body>
+	  <input type="submit" onClick="myFunction()"/>
 	  <script>
 		  function myFunction() {
 			  window.location.href="https://skel700.github.io/data-vis-final/page2";
 		  }
 	  </script>
+	</body>
+  <body onload='init()'>
+    <svg width=300 height=300></svg>
+    
     <script>
 	    xs = d3.scaleBand().domain([2018,2019, 2020]).range([0, 200])
 	    ys = d3.scaleLinear().domain([0, 6000000]).range([200, 0])
