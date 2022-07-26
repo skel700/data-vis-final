@@ -10,11 +10,17 @@
   <body onload='init()'>
     <svg width=300 height=300></svg>
     <script>
+	    xs = d3.scaleBand().domain([2018,2019, 2020]).range([0, 200])
+	    ys = d3.scaleLinear().domain([-1, 6]).range([200, 0])
     async function init(){
-    	data = d3.csv("/data-vis-final/2020_CSN_Identity_Theft_Reports_by_Type.csv")
+    	data = d3.csv("/data-vis-final/2020_CSN_Detailed_Report_Categories_over_Three_Years.csv")
 			.then(function(data) {
 
-	d3.select("svg").append("g").attr("test", "added")
+		d3.select("svg").append("g").attr("transform", "translate(50,50)").selectAll("rect").data(data).enter().append("rect").attr('x', function(d,i) {return xs(i);}).attr('y', function(d,i) {return ys(d);}).attr('width' , 200/3).attr('height', function(d) {return 200-ys(d);})
+
+		d3.select("svg").append("g").attr("transform", "translate(50,50)").call(d3.axisLeft(ys));
+		d3.select("svg").append("g").attr("transform", "translate(50,250)").call(d3.axisBottom(xs));
+		
 	});
     }
     </script>
