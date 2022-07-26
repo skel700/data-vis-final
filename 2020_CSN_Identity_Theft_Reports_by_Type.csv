@@ -1,5 +1,3 @@
-Identity Theft Reports by Type,,,
-,,,
 Theft Type,Theft Subtype,# of Reports,% Difference From Previous Year
 Bank Fraud,"Debit Cards, Electronic Funds Transfer, or ACH","30,802",32%
 Bank Fraud,Existing Accounts,"13,704",9%
@@ -25,13 +23,9 @@ Other Identity Theft,Medical Services,"45,558",64%
 Other Identity Theft,Online Shopping or Payment Account,"14,779",38%
 Other Identity Theft,Other,"281,434",69%
 Other Identity Theft,Securities Accounts,"3,779",72%
-Phone or Utilities Fraud,Landline Telephone – Existing Accounts,"2,090",20%
-Phone or Utilities Fraud,Landline Telephone – New Accounts,"12,287",13%
-Phone or Utilities Fraud,Mobile Telephone – Existing Accounts,"6,053",8%
-Phone or Utilities Fraud,Mobile Telephone – New Accounts,"48,166",9%
-Phone or Utilities Fraud,Utilities – Existing Accounts,"2,248",55%
-Phone or Utilities Fraud,Utilities – New Accounts,"41,266",39%
-,,,
-"Consumers can report multiple types of identity theft. In 2020, 15% of identity theft reports included more than one type of identity theft",,,
-,,,
-"Source: Consumer Sentinel Network Data Book 2020, Federal Trade Commission",,,
+Phone or Utilities Fraud,Landline Telephone â€“ Existing Accounts,"2,090",20%
+Phone or Utilities Fraud,Landline Telephone â€“ New Accounts,"12,287",13%
+Phone or Utilities Fraud,Mobile Telephone â€“ Existing Accounts,"6,053",8%
+Phone or Utilities Fraud,Mobile Telephone â€“ New Accounts,"48,166",9%
+Phone or Utilities Fraud,Utilities â€“ Existing Accounts,"2,248",55%
+Phone or Utilities Fraud,Utilities â€“ New Accounts,"41,266",39%
