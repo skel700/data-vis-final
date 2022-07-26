@@ -16,7 +16,7 @@
     	data = d3.csv("/data-vis-final/2020_CSN_Detailed_Report_Categories_over_Three_Years.csv")
 			.then(function(data) {
 
-		d3.select("svg").append("g").attr("transform", "translate(50,50)").selectAll("rect").data(data).enter().append("rect").attr('x', function(d,i) {return xs(i);}).attr('y', function(d,i) {return ys(d);}).attr('width' , 200/3).attr('height', function(d) {return 200-ys(d);})
+		d3.select("svg").append("g").attr("transform", "translate(50,50)").selectAll("rect").data(data).enter().append("rect").attr('x', function(d,i) {return xs(i);}).attr('y', function(d,i) {return ys(d.Percentage);}).attr('width' , 200/3).attr('height', function(d) {return 200-ys(d);})
 
 		d3.select("svg").append("g").attr("transform", "translate(50,50)").call(d3.axisLeft(ys));
 		d3.select("svg").append("g").attr("transform", "translate(50,250)").call(d3.axisBottom(xs));
