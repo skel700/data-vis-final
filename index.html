@@ -11,14 +11,15 @@
     <svg width=300 height=300></svg>
     <script>
 	    xs = d3.scaleBand().domain([2018,2019, 2020]).range([0, 200])
-	    ys = d3.scaleLinear().domain([-1, 6]).range([200, 0])
+	    ys = d3.scaleLinear().domain([0, 6000000]).range([200, 0])
     async function init(){
     	data = d3.csv("/data-vis-final/2020_CSN_Detailed_Report_Categories_over_Three_Years.csv")
 			.then(function(data) {
 
 		
-		d3.select("svg").append("g").attr("transform", "translate(50,50)").selectAll("rect").data(data).enter().append("rect").attr('d1', function(d) {return d.Percentage;}).attr('d', function(d) {return d[0];}).attr('x', function(d,i) {return xs(i);}).attr('y', function(d,i) {return ys(d.Percentage);}).attr('width' , 200/3).attr('height', function(d) {return 200-ys(d.Percentage);})
-
+		
+		d3.select("svg").append("g").attr("transform", "translate(50,50)").selectAll("dot").data(data).enter().append("circle").attr("cx", function(d) {return xs(d.Year);}).attr("cy", function(d) {return ys(d.Number_of_Reports);}).attr("r", 2)
+		
 		d3.select("svg").append("g").attr("transform", "translate(50,50)").call(d3.axisLeft(ys));
 		d3.select("svg").append("g").attr("transform", "translate(50,250)").call(d3.axisBottom(xs));
 		
