@@ -34,8 +34,14 @@
     	data = d3.csv("/data-vis-final/" + stringYear + ".csv")
 			.then(function(data) {
 	
-		console.log(data[0])
-		xs = d3.scaleBand().domain(data[0]).range([0, 400])
+		console.log(data[0][0])
+		const labels = [];
+		for(let i = 0; i < data.length; i++){
+			labels.push(data[i][0]);
+		}
+			
+		xs = d3.scaleBand().domain(labels).range([0, 400])
+		console.log("made it")
 		ys = d3.scaleLinear().domain([0, 1400000]).range([200, 0])
 		
 		
