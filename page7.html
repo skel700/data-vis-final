@@ -34,10 +34,10 @@
     	data = d3.csv("/data-vis-final/" + stringYear + ".csv")
 			.then(function(data) {
 	
-		console.log(data[0][0])
+		console.log(data[0].Category)
 		const labels = [];
 		for(let i = 0; i < data.length; i++){
-			labels.push(data[i][0]);
+			labels.push(data[i].Category);
 		}
 			
 		xs = d3.scaleBand().domain(labels).range([0, 400])
