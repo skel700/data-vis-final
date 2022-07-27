@@ -27,11 +27,9 @@
 	    ys = d3.scaleLinear().domain([0.0084, 0.0088]).range([200, 0])
 	    
 	 
-    function urlParameter(year){
-	    var results = new RegExp('[\\?&]' + year + '=([^&#]*)').exec(window.location.href);
-	    return results[1] || 0;
-    }
-    var year = urlParameter('year')
+    
+    const year = window.location.search;
+    console.log(year);
 	    
     async function init(){
     	data = d3.csv("/data-vis-final/" + year + ".csv")
