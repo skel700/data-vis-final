@@ -29,7 +29,7 @@
 	 
     
     const year = window.location.search;
-    let stringYear = year.substring(6, 9);
+    let stringYear = year.substring(6, 10);
 	    
     async function init(){
     	data = d3.csv("/data-vis-final/" + stringYear + ".csv")
