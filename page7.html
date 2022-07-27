@@ -29,10 +29,10 @@
 	 
     
     const year = window.location.search;
-    console.log(year);
+    let stringYear = text.substring(6, 9);
 	    
     async function init(){
-    	data = d3.csv("/data-vis-final/" + year + ".csv")
+    	data = d3.csv("/data-vis-final/" + stringYear + ".csv")
 			.then(function(data) {
 
 		d3.d3.select("svg").append("g").attr("test", "made it")
