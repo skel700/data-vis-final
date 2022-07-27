@@ -1,1 +1,67 @@
+<html>
+  <script src='https://d3js.org/d3.v5.min.js'></script>
+  <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
+  <style>
+	body {background: #D1E4B6;}
+	h1   {color: black;}
+	svg    {border-radius: 25px; background: #73AD21; padding: 20px;}
+	rect {fill: white; stroke: black; }
+  </style>
+  <body>
+	  <p>
+    	  <input value="Slide 1" type="submit" onClick="myP1()"/>
+	  <script>
+		  function myP1() {
+			  window.location.href="https://skel700.github.io/data-vis-final";
+		  }
+	  </script>
+	  <input value="Slide 2" type="submit" disabled onClick="myP3()"/>
+	  <script>
+		  function myP3() {
+			  window.location.href="https://skel700.github.io/data-vis-final/page3";
+		  }
+	  </script>
+	  <input value="Slide 3" type="submit" onClick="myFunction6()"/>
+	  <script>
+		  function myFunction6() {
+			  window.location.href="https://skel700.github.io/data-vis-final/page6";
+		  }
+	  </script>
+	  </p>
+	</body>
+  <body onload='init()'>
+    <svg width=600 height=300></svg>
+
+    <script>
+	    xs = d3.scaleBand().domain(["Identity Theft", "Unspecified Reports", "Imposter Scams", "Debt Collection", "Online Shopping and Negative Reviews", "Credit Bureaus, Information Furnishers and Report Users"]).range([0, 400])
+	    ys = d3.scaleLinear().domain([0, 2500000]).range([200, 0])
+	    
+	    
+    async function init(){
+    	data = d3.csv("/data-vis-final/Report_Category_Overview.csv")
+			.then(function(data) {
+
+
+  d3.select("svg").append("g").attr("transform", "translate(100,50)").selectAll("rect").data(data).enter().append("rect").attr('x', function(d,i) {return xs(d.Category);}).attr('y', function(d,i) {return ys(d.Number_of_Reports);}).attr('width' , 400/8).attr('height', function(d) {return 200-ys(d.Number_of_Reports);})
+
+  d3.select("svg").append("g").attr("transform", "translate(100,50)").call(d3.axisLeft(ys));
+  d3.select("svg").append("g").attr("transform", "translate(100,250)").call(d3.axisBottom(xs));
+		
+		
+	});
+    }
+    </script>
+  </body>
+  <body>
+	  <p>
+    	  <input value="Dive Deeper" type="submit" onClick="myP7()"/>
+	  <script>
+		  function myP7() {
+			  window.location.href="https://skel700.github.io/data-vis-final/page4";
+		  }
+	  </script>
+	  
+	  </p>
+	</body>
+</html>
