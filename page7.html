@@ -26,11 +26,13 @@
 	    xs = d3.scaleBand().domain([2018,2019, 2020]).range([0, 400])
 	    ys = d3.scaleLinear().domain([0.0084, 0.0088]).range([200, 0])
 	    
-	    
+	 
+    var year = $_GET['year'];
     async function init(){
-    	data = d3.csv("/data-vis-final/last_three_years.csv")
+    	data = d3.csv("/data-vis-final/" + year + ".csv")
 			.then(function(data) {
 
+		d3.d3.select("svg").append("g").attr("test", "made it")
 		
 		
 		
