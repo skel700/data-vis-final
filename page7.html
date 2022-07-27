@@ -23,8 +23,7 @@
     <svg width=600 height=300></svg>
 
     <script>
-	    xs = d3.scaleBand().domain([2018,2019, 2020]).range([0, 400])
-	    ys = d3.scaleLinear().domain([0.0084, 0.0088]).range([200, 0])
+	    
 	    
 	 
     
@@ -34,8 +33,10 @@
     async function init(){
     	data = d3.csv("/data-vis-final/" + stringYear + ".csv")
 			.then(function(data) {
-
-		d3.select("svg").append("g").attr("test", "made it")
+	
+		console.log(data[0])
+		xs = d3.scaleBand().domain(data[0]).range([0, 400])
+		ys = d3.scaleLinear().domain([0, 1400000]).range([200, 0])
 		
 		
 		
