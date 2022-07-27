@@ -19,7 +19,7 @@
 	</body>
   <body onload='init()'>
     <svg width=300 height=300></svg>
-    
+	  <path></path>
     <script>
 	    xs = d3.scaleBand().domain([2018,2019, 2020]).range([0, 200])
 	    ys = d3.scaleLinear().domain([0, 6000000]).range([200, 0])
@@ -33,7 +33,7 @@
 		var pts = [ [2018, 3143204], [2019, 3468615], [2020, 5002239]];
 		var pathOfLine = lineGen(pts);
 		
-		d3.select("svg").append("g").attr("transform", "translate(50,50)").append("path").attr("d", pathOfLine);
+		d3.select("svg").select("path").attr("transform", "translate(50,50)").attr("d", pathOfLine);
 		d3.select("svg").append("g").attr("transform", "translate(50,50)").selectAll("dot").data(data).enter().append("circle").attr("cx", function(d) {return xs(d.Year);}).attr("cy", function(d) {return ys(d.Number_of_Reports);}).attr("r", 2)
 		
 		d3.select("svg").append("g").attr("transform", "translate(50,50)").call(d3.axisLeft(ys));
