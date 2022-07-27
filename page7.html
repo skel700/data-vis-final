@@ -1,0 +1,42 @@
+<html>
+  <script src='https://d3js.org/d3.v5.min.js'></script>
+  <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
+  <style>
+	body {background: #D1E4B6;}
+	h1   {color: black;}
+	svg    {border-radius: 25px; background: #73AD21; padding: 20px;}
+	rect {fill: white; stroke: black; }
+  </style>
+  <body>
+	  <p>
+    <input value="Slide 1" type="submit" onClick="myFunctionP1()"/>
+	  <script>
+		  function myFunctionP1() {
+			  window.location.href="https://skel700.github.io/data-vis-final";
+		  }
+	  </script>
+	  
+	  </p>
+	</body>
+  <body onload='init()'>
+    <svg width=600 height=300></svg>
+
+    <script>
+	    xs = d3.scaleBand().domain([2018,2019, 2020]).range([0, 400])
+	    ys = d3.scaleLinear().domain([0.0084, 0.0088]).range([200, 0])
+	    
+	    
+    async function init(){
+    	data = d3.csv("/data-vis-final/last_three_years.csv")
+			.then(function(data) {
+
+		
+		
+		
+	});
+    }
+    </script>
+  </body>
+	
+</html>
