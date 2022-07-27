@@ -46,7 +46,7 @@
   d3.select("svg").append("g").attr("transform", "translate(100,50)").selectAll("rect").data(data).enter().append("rect").attr('x', function(d,i) {return xs(d.Category);}).attr('y', function(d,i) {return ys(d.Number_of_Reports);}).attr('width' , 400/8).attr('height', function(d) {return 200-ys(d.Number_of_Reports);})
 
   d3.select("svg").append("g").attr("transform", "translate(100,50)").call(d3.axisLeft(ys));
-  d3.select("svg").append("g").attr("transform", "translate(100,250)").call(d3.axisBottom(xs)).on("end", function() { d3.select(this).selectAll(".tick text").call(wrap, x.bandwidth())});
+  d3.select("svg").append("g").attr("transform", "translate(100,250)").call(d3.axisBottom(xs));
 		
 		
 	});
