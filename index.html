@@ -29,7 +29,11 @@
     	data = d3.csv("/data-vis-final/last_three_years.csv")
 			.then(function(data) {
 
-		d3.select("svg").append("g").attr("transform", "translate(50,50)").append("path").datum(data).attr("fill", "none").attr("stroke", "#69b3a2").attr("stroke-width", 1.5).attr("d", d3.line().x(function(d) {return xs(d.Year);}).y(function(d) {return ys(d.Number_of_Records);}))
+		var lineGen = d3.line();
+		var pts = [ [2018, 3143204], [2019, 3468615], [2020, 5002239]];
+		var pathOfLine = lineGen(pts);
+		
+		d3.select("svg").append("g").attr("transform", "translate(50,50)").append("path").attr("d", pathOfLine);
 		d3.select("svg").append("g").attr("transform", "translate(50,50)").selectAll("dot").data(data).enter().append("circle").attr("cx", function(d) {return xs(d.Year);}).attr("cy", function(d) {return ys(d.Number_of_Reports);}).attr("r", 2)
 		
 		d3.select("svg").append("g").attr("transform", "translate(50,50)").call(d3.axisLeft(ys));
