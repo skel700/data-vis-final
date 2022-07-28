@@ -1,0 +1,66 @@
+<html>
+  <script src='https://d3js.org/d3.v5.min.js'></script>
+  <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
+  <style>
+	body {background: #D1E4B6;}
+	h1   {color: black;}
+	svg    {border-radius: 25px; background: #73AD21; padding: 20px;}
+	rect {fill: white; stroke: black; }
+	path.line.annotation text {fill: white};
+    }
+  </style>
+  <body>
+	  <p>
+    <input value="Slide 1" type="submit" onClick="myFunctionP1()"/>
+	  <script>
+		  function myFunctionP1() {
+			  window.location.href="https://skel700.github.io/data-vis-final/page6";
+		  }
+	  </script>
+	  
+	  </p>
+	</body>
+    
+  <body onload='init()'>
+    <svg width=600 height=300></svg>
+
+    <script>
+	    xs = d3.scaleBand().domain(["Government Documents or Benefits Fraud", "Credit Card Fraud", "Other Identity Theft", "Loan or Lease Fraud", "Employment or Tax-Related Fraud", "Phone or Utilities Fraud", "Bank Fraud"]).range([0, 400])
+	    ys = d3.scaleLinear().domain([0, 130000]).range([200, 0])
+	    
+	    
+    async function init(){
+    	data = d3.csv("/data-vis-final/Category_by_Age.csv")
+			.then(function(data) {
+        
+        let age = "30 - 39"
+        
+        <label for="ageRange">Choose an age range:</label>
+        <select name="ageRange" id="ageRange">
+          <option value="19 and Under">19 and Under</option>
+          <option value="20 - 29">20 - 29</option>
+          <option value="30 - 39">30 - 39</option>
+          <option value="40 - 49">40 - 49</option>
+          <option value="50 - 59">50 - 59</option>
+          <option value="60 - 69">60 - 69</option>
+          <option value="70 - 79">70 - 79</option>
+          <option value="80 and Over">80 and Over</option>
+        </select>
+        <input type="submit" value="Submit" onClick="ageFxn()"/>
+          <script>
+          function ageFxn() {
+            age = ageRange;
+        }
+        
+        console.log(age)
+
+        
+		
+		
+	});
+    }
+    </script>
+  </body>
+	
+</html>
