@@ -21,20 +21,8 @@
 	  
 	  </p>
 	</body>
-    
-  <body onload='init()'>
-    <svg width=600 height=300></svg>
-
-    <script>
-	    xs = d3.scaleBand().domain(["Government Documents or Benefits Fraud", "Credit Card Fraud", "Other Identity Theft", "Loan or Lease Fraud", "Employment or Tax-Related Fraud", "Phone or Utilities Fraud", "Bank Fraud"]).range([0, 400])
-	    ys = d3.scaleLinear().domain([0, 130000]).range([200, 0])
-	    
-	    
-    async function init(){
-    	data = d3.csv("/data-vis-final/Category_by_Age.csv")
-			.then(function(data) {
-        
-        var age = "30 - 39"
+  <body>
+	var age = "30 - 39"
         
 	<form>
         <label for="ageRange">Choose an age range:</label>
@@ -52,9 +40,23 @@
           <script>
           function ageFxn() {
             age = ageRange;
-        }
+          }
 	  </script>
 	  </form>
+	</body>
+  <body onload='init()'>
+    <svg width=600 height=300></svg>
+
+    <script>
+	    xs = d3.scaleBand().domain(["Government Documents or Benefits Fraud", "Credit Card Fraud", "Other Identity Theft", "Loan or Lease Fraud", "Employment or Tax-Related Fraud", "Phone or Utilities Fraud", "Bank Fraud"]).range([0, 400])
+	    ys = d3.scaleLinear().domain([0, 130000]).range([200, 0])
+	    
+	    
+    async function init(){
+    	data = d3.csv("/data-vis-final/Category_by_Age.csv")
+			.then(function(data) {
+        
+        
         
         console.log(age)
 
