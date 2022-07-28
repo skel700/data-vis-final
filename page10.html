@@ -45,39 +45,124 @@
 	  </form>
 	</body>
   <body onload='init()'>
-    <svg width=600 height=300></svg>
+    <div id='vis-container'></div>
+        <script type="text/javascript">
+            // Load and munge data, then make the visualization.
+            var fileName = "data-vis-final/Category_by_Age.csv";
+            var nutritionFields = ["Government Documents or Benefits Fraud", "Credit Card Fraud", "Other Identity Theft", "Loan or Lease Fraud", "Employment or Tax-Related Fraud", "Phone or Utilities Fraud", "Bank Fraud"];
 
-    <script>
-	    
-	    
-	    var ageFields = ["19 and Under", "20 - 29", "30 - 39", "40 - 49", "50 - 59", "60 - 69", "70 - 79", "80 and Over"]
-	    var categoryFields = ["Government Documents or Benefits Fraud", "Credit Card Fraud", "Other Identity Theft", "Loan or Lease Fraud", "Employment or Tax-Related Fraud", "Phone or Utilities Fraud", "Bank Fraud"]
-	    
-    async function init(){
-    	data = d3.csv("/data-vis-final/Category_by_Age.csv")
-			.then(function(data) {
-		
-		var ageMap = {};
-		data.forEach(function(d) {
-			var ages = d.Category;
-			ageMap[ages] = [];
-			
-			typeFields.forEach(function(field) {
-				ageMap[age].push( +d[field]);
-			});
-			makeVis(ageMap);
-		});
-		
-		var makeVis = function(ageMap) {
-			xs = d3.scaleBand().domain(typeFields).range([0, 400])
-	    		ys = d3.scaleLinear().domain([0, 130000]).range([200, 0])
-			
-			d3.select("svg").append("g").attr("transform, "translate(100,50)").selectAll("rect").data(data).enter().append("rect").attr("x", function(d, i) {return xs(typeFields[i]);}).attr("y", function(d,i) {return ys(d);})
-		};
-        
-        
-          
-		
+            d3.csv(fileName, function(error, data) {
+                var cerealMap = {};
+                data.forEach(function(d) {
+                    var cereal = d.Category;
+                    cerealMap[cereal] = [];
+
+                    // { cerealName: [ bar1Val, bar2Val, ... ] }
+                    nutritionFields.forEach(function(field) {
+                        cerealMap[cereal].push( +d[field] );
+                    });
+                });
+                makeVis(cerealMap);
+            });
+
+            var makeVis = function(cerealMap) {
+                // Define dimensions of vis
+                var margin = { top: 50, right: 100, bottom: 50, left: 100 },
+                    width  = 600 - margin.left - margin.right,
+                    height = 200 - margin.top  - margin.bottom;
+
+                // Make x scale
+                var xScale = d3.scale.ordinal()
+                    .domain(nutritionFields)
+                    .range(0, 400);
+
+                // Make y scale, the domain will be defined on bar update
+                var yScale = d3.scale.linear()
+                    .domain([0, 130000])
+		    .range([200, 0]);
+
+                // Create canvas
+                var canvas = d3.select("#vis-container")
+                  .append("svg")
+                    .attr("width",  width  + margin.left + margin.right)
+                    .attr("height", height + margin.top  + margin.bottom)
+                  .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+                // Make x-axis and add to canvas
+                var xAxis = d3.svg.axis()
+                    .scale(xScale)
+                    .orient("bottom");
+
+                canvas.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis);
+
+                // Make y-axis and add to canvas
+                var yAxis = d3.svg.axis()
+                    .scale(yScale)
+                    .orient("left");
+
+                var yAxisHandleForUpdate = canvas.append("g")
+                    .attr("class", "y axis")
+                    .call(yAxis);
+
+
+
+                var updateBars = function(data) {
+                    // First update the y-axis domain to match data
+                    yScale.domain( d3.extent(data) );
+                    yAxisHandleForUpdate.call(yAxis);
+
+                    var bars = canvas.selectAll(".bar").data(data);
+
+                    // Add bars for new data
+                    bars.enter()
+                      .append("rect")
+                        .attr("class", "bar")
+                        .attr("x", function(d,i) { return xScale( nutritionFields[i] ); })
+                        .attr("width", xScale.rangeBand())
+                        .attr("y", function(d,i) { return yScale(d); })
+                        .attr("height", function(d,i) { return height - yScale(d); });
+
+                    // Update old ones, already have x / width from before
+                    bars
+                        .transition().duration(250)
+                        .attr("y", function(d,i) { return yScale(d); })
+                        .attr("height", function(d,i) { return height - yScale(d); });
+
+                    // Remove old ones
+                    bars.exit().remove();
+                };
+
+                // Handler for dropdown value change
+                var dropdownChange = function() {
+                    var newCereal = d3.select(this).property('value'),
+                        newData   = cerealMap[newCereal];
+
+                    updateBars(newData);
+                };
+
+                // Get names of cereals, for dropdown
+                var cereals = Object.keys(cerealMap).sort();
+
+                var dropdown = d3.select("#vis-container")
+                    .insert("select", "svg")
+                    .on("change", dropdownChange);
+
+                dropdown.selectAll("option")
+                    .data(cereals)
+                  .enter().append("option")
+                    .attr("value", function (d) { return d; })
+                    .text(function (d) {
+                        return d[0].toUpperCase() + d.slice(1,d.length); // capitalize 1st letter
+                    });
+
+                var initialData = cerealMap[ cereals[0] ];
+                updateBars(initialData);
+            };
+       
 		
 function wrap(text, width) {
   text.each(function() {
