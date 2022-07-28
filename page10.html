@@ -48,17 +48,60 @@
     <svg width=600 height=300></svg>
 
     <script>
-	    xs = d3.scaleBand().domain(["Government Documents or Benefits Fraud", "Credit Card Fraud", "Other Identity Theft", "Loan or Lease Fraud", "Employment or Tax-Related Fraud", "Phone or Utilities Fraud", "Bank Fraud"]).range([0, 400])
-	    ys = d3.scaleLinear().domain([0, 130000]).range([200, 0])
 	    
+	    
+	    var ageFields = ["19 and Under", "20 - 29", "30 - 39", "40 - 49", "50 - 59", "60 - 69", "70 - 79", "80 and Over"]
+	    var categoryFields = ["Government Documents or Benefits Fraud", "Credit Card Fraud", "Other Identity Theft", "Loan or Lease Fraud", "Employment or Tax-Related Fraud", "Phone or Utilities Fraud", "Bank Fraud"]
 	    
     async function init(){
     	data = d3.csv("/data-vis-final/Category_by_Age.csv")
 			.then(function(data) {
+		
+		var ageMap = {};
+		data.forEach(function(d) {
+			var ages = d.Category;
+			ageMap[ages] = [];
+			
+			typeFields.forEach(function(field) {
+				ageMap[age].push( +d[field]);
+			});
+			makeVis(ageMap);
+		});
+		
+		var makeVis = function(ageMap) {
+			xs = d3.scaleBand().domain(typeFields).range([0, 400])
+	    		ys = d3.scaleLinear().domain([0, 130000]).range([200, 0])
+			
+			d3.select("svg").append("g").attr("transform, "translate(100,50)").selectAll("rect").data(data).enter().append("rect").attr("x", function(d, i) {return xs(typeFields[i]);}).attr("y", function(d,i) {return ys(d);}).exit().remove()
+		};
         
         
-        
-        console.log(document.getElementById("ageRange"))
+          
+		
+		
+function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em")
+    while (word = words.pop()) {
+      line.push(word)
+      tspan.text(line.join(" "))
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop()
+        tspan.text(line.join(" "))
+        line = [word]
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", `${++lineNumber * lineHeight + dy}em`).text(word)
+      }
+    }
+  })
+	    };
 
         
 		
