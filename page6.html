@@ -46,9 +46,30 @@
   d3.select("svg").append("g").attr("transform", "translate(100,50)").selectAll("rect").data(data).enter().append("rect").attr('x', function(d,i) {return xs(d.Age_Range);}).attr('y', function(d,i) {return ys(d.Number_of_Reports);}).attr('width' , 400/8).attr('height', function(d) {return 200-ys(d.Number_of_Reports);})
 
   d3.select("svg").append("g").attr("transform", "translate(100,50)").call(d3.axisLeft(ys));
-  d3.select("svg").append("g").attr("transform", "translate(100,250)").call(d3.axisBottom(xs));
+  d3.select("svg").append("g").attr("transform", "translate(100,250)").call(d3.axisBottom(xs)).selectAll(".tick text").call(wrap, xs.bandwidth())
 		
-		
+  function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em")
+    while (word = words.pop()) {
+      line.push(word)
+      tspan.text(line.join(" "))
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop()
+        tspan.text(line.join(" "))
+        line = [word]
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", `${++lineNumber * lineHeight + dy}em`).text(word)
+      }
+    }
+  })};		
 	});
     }
     </script>
