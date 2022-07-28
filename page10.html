@@ -72,7 +72,7 @@
 			xs = d3.scaleBand().domain(typeFields).range([0, 400])
 	    		ys = d3.scaleLinear().domain([0, 130000]).range([200, 0])
 			
-			d3.select("svg").append("g").attr("transform, "translate(100,50)").selectAll("rect").data(data).enter().append("rect").attr("x", function(d, i) {return xs(typeFields[i]);}).attr("y", function(d,i) {return ys(d);}).exit().remove()
+			d3.select("svg").append("g").attr("transform, "translate(100,50)").selectAll("rect").data(data).enter().append("rect").attr("x", function(d, i) {return xs(typeFields[i]);}).attr("y", function(d,i) {return ys(d);})
 		};
         
         
