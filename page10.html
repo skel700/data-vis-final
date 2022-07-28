@@ -22,13 +22,15 @@
 	  </p>
 	</body>
  
-  <body>
+  <body onload='init()'>
     <div id='vis-container'></div>
         <script type="text/javascript">
             // Load and munge data, then make the visualization.
             var fileName = "data-vis-final/Category_by_Age.csv";
             var nutritionFields = ["Government Documents or Benefits Fraud", "Credit Card Fraud", "Other Identity Theft", "Loan or Lease Fraud", "Employment or Tax-Related Fraud", "Phone or Utilities Fraud", "Bank Fraud"];
 
+
+	async function init(){
             d3.csv(fileName, function(error, data) {
                 var cerealMap = {};
                 data.forEach(function(d) {
@@ -140,6 +142,7 @@
                 var initialData = cerealMap[ cereals[0] ];
                 updateBars(initialData);
             };
+	}
 	  </script>
   </body>
 	
