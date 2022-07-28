@@ -22,7 +22,7 @@
 	  </p>
 	</body>
   <body>
-	var age = "30 - 39"
+	  <p hidden id="ageRange">30 - 39</p>
         
 	<form>
         <label for="ageRange">Choose an age range:</label>
@@ -39,7 +39,7 @@
         <input type="submit" value="Submit" onClick="ageFxn()"/>
           <script>
           function ageFxn() {
-            age = ageRange;
+            document.getElementById("ageRange").innerHTML = ageRange
           }
 	  </script>
 	  </form>
@@ -58,7 +58,7 @@
         
         
         
-        console.log(age)
+        console.log(document.getElementById("ageRange"))
 
         
 		
