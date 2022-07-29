@@ -18,6 +18,23 @@
 	  </script>
 	  
 	  </p>
+	   <p>
+	  <h1>Number of Reports for Top Increasing Buckets</h1>
+	  </p>
+	  <p>
+		   The number of reports for the top increasing buckets per year can also be investigated to further contextualize which categories are incluencing the total number of reports the most.
+	  </p>
+	  <p id="curYear">
+	
+		  Viewing year: 
+		  <script>
+			  const year = window.location.search;
+			  let stringYear = year.substring(6, 10);
+			  
+			  document.getElementById("curYear").innerHTML = "Viewing year:" + stringYear;
+		  </script>
+			  
+	  </p>
 	</body>
 	
   <body>
