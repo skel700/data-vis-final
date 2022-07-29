@@ -1,0 +1,111 @@
+<html>
+  <script src='https://d3js.org/d3.v5.min.js'></script>
+  <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
+  <style>
+	body {background: #D1E4B6;}
+	h1   {color: black;}
+	svg    {border-radius: 25px; background: #73AD21; padding: 20px;}
+	rect {fill: white; stroke: black; }
+  </style>
+  <body>
+	  <p>
+    <input value="Slide 2" type="submit" onClick="myFunctionP1()"/>
+	  <script>
+		  function myFunctionP1() {
+			  window.location.href="https://skel700.github.io/data-vis-final/page3";
+		  }
+	  </script>
+	  
+	  </p>
+	</body>
+	
+  <body>
+
+	  <form>
+		  <label for="year">Choose a year:</label>
+		  <select name="year" id="year">
+			  <option value="2018">2018</option>
+			  <option value="2019">2019</option>
+			  <option value="2020">2020</option>
+		  </select>
+		  <input type="submit" value="Submit" onClick="yearFxn()"/>
+		  <script>
+			  function yearFxn() {
+				  window.location.href="https://skel700.github.io/data-vis-final/page8?year="+year;
+			  }
+		  </script>
+	  </form>
+  </body>
+  <body onload='init()'>
+    <svg width=600 height=300></svg>
+
+    <script>
+	    
+	    
+	 
+    
+    const year = window.location.search;
+    let stringYear = year.substring(6, 10);
+	    
+    async function init(){
+    	data = d3.csv("/data-vis-final/" + stringYear + ".csv")
+			.then(function(data) {
+	
+		console.log(data[0].Category)
+		const labels = [];
+		for(let i = 0; i < data.length; i++){
+			labels.push(data[i].Category);
+		}
+			
+		xs = d3.scaleBand().domain(labels).range([0, 400])
+		ys = d3.scaleLinear().domain([0, 0.3]).range([200, 0])
+		
+		
+
+		d3.select("svg").append("g").attr("transform", "translate(100,50)").selectAll("rect").data(data).enter().append("rect").attr('x', function(d,i) {return xs(d.Category);}).attr('y', function(d,i) {return ys(d.Percent_Increase_from_Last_Year);}).attr('width' , 400/5).attr('height', function(d) {return 200-ys(d.Percent_Increase_from_Last_Year);})
+
+		d3.select("svg").append("g").attr("transform", "translate(100,50)").call(d3.axisLeft(ys));
+		d3.select("svg").append("g").attr("transform", "translate(100,250)").call(d3.axisBottom(xs)).selectAll(".tick text").call(wrap, xs.bandwidth())
+		
+		function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em")
+    while (word = words.pop()) {
+      line.push(word)
+      tspan.text(line.join(" "))
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop()
+        tspan.text(line.join(" "))
+        line = [word]
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", `${++lineNumber * lineHeight + dy}em`).text(word)
+      }
+    }
+  })};
+		
+		
+	});
+    }
+    </script>
+  </body>
+  <body>
+	  <p>
+    <input value="Even Deeper" type="submit" onClick="myFunctionP2()"/>
+	  <script>
+		  function myFunctionP2() {
+			  window.location.href="https://skel700.github.io/data-vis-final/page7";
+		  }
+	  </script>
+	  
+	  </p>
+	</body>
+	
+</html>
