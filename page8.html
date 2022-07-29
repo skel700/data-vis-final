@@ -16,12 +16,6 @@
 			  window.location.href="https://skel700.github.io/data-vis-final/page3";
 		  }
 	  </script>
-	  
-	  </p>
-	</body>
-	
-  <body>
-
 	  <form>
 		  <label for="year">Choose a year:</label>
 		  <select name="year" id="year">
@@ -36,7 +30,28 @@
 			  }
 		  </script>
 	  </form>
-  </body>
+	  </p>
+	   <p>
+	  <h1>Top 5 Increasing Buckets</h1>
+	  </p>
+	  <p>
+		   The top buckets for each year will shift and update, but we can investigate further into which category is increasing in percentage year over year.  Hopefully, this will give a targeted approach for crime prevention
+		   
+	  </p>
+	  <p id="curYear">
+	
+		  Viewing year: 
+		  <script>
+			  const yearView = window.location.search;
+			  let stringYr = yearView.substring(6, 10);
+			  
+			  document.getElementById("curYear").innerHTML = "Viewing year:" + stringYr;
+		  </script>
+			  
+	  </p>
+	</body>
+	
+
   <body onload='init()'>
     <svg width=600 height=300></svg>
 
