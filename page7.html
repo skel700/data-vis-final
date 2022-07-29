@@ -59,11 +59,11 @@
 	    
 	 
     
-    const year = window.location.search;
-    let stringYear = year.substring(6, 10);
+    const yr = window.location.search;
+    let sYear = yr.substring(6, 10);
 	    
     async function init(){
-    	data = d3.csv("/data-vis-final/" + stringYear + ".csv")
+    	data = d3.csv("/data-vis-final/" + sYear + ".csv")
 			.then(function(data) {
 	
 		console.log(data[0].Category)
