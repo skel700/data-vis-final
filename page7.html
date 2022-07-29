@@ -16,7 +16,20 @@
 			  window.location.href="https://skel700.github.io/data-vis-final/page3";
 		  }
 	  </script>
-	  
+	   <form>
+		  <label for="year">Choose a year:</label>
+		  <select name="year" id="year">
+			  <option value="2018">2018</option>
+			  <option value="2019">2019</option>
+			  <option value="2020">2020</option>
+		  </select>
+		  <input type="submit" value="Submit" onClick="yearFxn()"/>
+		  <script>
+			  function yearFxn() {
+				  window.location.href="https://skel700.github.io/data-vis-final/page7?year="+year;
+			  }
+		  </script>
+	  </form>
 	  </p>
 	   <p>
 	  <h1>Number of Reports for Top Increasing Buckets</h1>
@@ -37,23 +50,7 @@
 	  </p>
 	</body>
 	
-  <body>
-
-	  <form>
-		  <label for="year">Choose a year:</label>
-		  <select name="year" id="year">
-			  <option value="2018">2018</option>
-			  <option value="2019">2019</option>
-			  <option value="2020">2020</option>
-		  </select>
-		  <input type="submit" value="Submit" onClick="yearFxn()"/>
-		  <script>
-			  function yearFxn() {
-				  window.location.href="https://skel700.github.io/data-vis-final/page7?year="+year;
-			  }
-		  </script>
-	  </form>
-  </body>
+ 
   <body onload='init()'>
     <svg width=600 height=300></svg>
 
